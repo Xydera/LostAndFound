@@ -43,4 +43,23 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+        <!-- Add Item Activity Strings -->
+        <string name="title_hint">Enter Title</string>
+        <string name="description_hint">Enter Description</string>
+        <string name="date_hint">Enter Date (e.g. 2025-05-22)</string>
+        <string name="location_hint">Enter or select location</string>
+        <string name="contact_hint">Enter Contact Info</string>
+        <string name="get_current_location">Get Current Location</string>
+        <string name="save_item">Save Item</string>
+
+        <!-- Toasts and Messages -->
+        <string name="location_null_message">Location is null. Make sure GPS is enabled.</string>
+        <string name="item_saved">Item saved!</string>
+        <string name="item_save_failed">Failed to save item.</string>
+        <string name="place_selection_failed">Place selection failed.</string>
+
+        <!-- Google Maps API Key (replace with your actual key) -->
+        <string name="google_maps_key" translatable="false">AIzaSyDpxGQ5Wwh-jp-xcGJY4MwsQko7HY2YUT8</string>
+
 </resources>

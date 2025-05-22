@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -20,6 +22,13 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         tvTitle = findViewById(R.id.tv_title);
         tvDescription = findViewById(R.id.tv_description);
         tvDate = findViewById(R.id.tv_date);
@@ -27,11 +36,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         tvContact = findViewById(R.id.tv_contact);
         btnDelete = findViewById(R.id.btn_delete);
 
-
-
         dbHelper = new DatabaseHelper(this);
 
-        // Get item ID passed from list
         Intent intent = getIntent();
         itemId = intent.getIntExtra("item_id", -1);
 
@@ -59,11 +65,19 @@ public class ItemDetailActivity extends AppCompatActivity {
             tvTitle.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_TITLE)));
             tvDescription.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_DESCRIPTION)));
             tvDate.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_DATE)));
-            tvLocation.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_LOCATION)));
+
+            double lat = cursor.getDouble(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_LAT));
+            double lng = cursor.getDouble(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_LNG));
+            tvLocation.setText("Lat: " + lat + ", Lng: " + lng);
+
             tvContact.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_CONTACT)));
             cursor.close();
         }
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }

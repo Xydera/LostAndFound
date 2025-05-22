@@ -3,6 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="24dp"
     android:paddingTop="32dp">
 
@@ -11,6 +12,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="32dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:title="Add Item"
+            android:titleTextColor="@android:color/white"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <EditText
             android:id="@+id/et_title"
@@ -41,6 +50,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contact Info" />
+        <Button
+            android:id="@+id/btn_get_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Current Location" />
 
         <Button
             android:id="@+id/btn_save"

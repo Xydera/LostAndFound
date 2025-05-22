@@ -10,15 +10,17 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "lostfound.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     public static final String TABLE_ITEMS = "items";
     public static final String COL_ID = "id";
     public static final String COL_TITLE = "title";
     public static final String COL_DESCRIPTION = "description";
     public static final String COL_DATE = "date";
-    public static final String COL_LOCATION = "location";
     public static final String COL_CONTACT = "contact";
+    public static final String COL_LAT = "latitude";
+    public static final String COL_LNG = "longitude";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,8 +33,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_TITLE + " TEXT, " +
                 COL_DESCRIPTION + " TEXT, " +
                 COL_DATE + " TEXT, " +
-                COL_LOCATION + " TEXT, " +
-                COL_CONTACT + " TEXT)";
+                COL_CONTACT + " TEXT," +
+                COL_LAT + " REAL, " +
+                COL_LNG + " REAL" +
+                ")";
         db.execSQL(createTable);
     }
 
@@ -42,14 +46,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertItem(String title, String description, String date, String location, String contact) {
+    public boolean insertItem(String title, String description, String date, String contact, double lat, double lng) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_TITLE, title);
         values.put(COL_DESCRIPTION, description);
         values.put(COL_DATE, date);
-        values.put(COL_LOCATION, location);
         values.put(COL_CONTACT, contact);
+        values.put(COL_LAT, lat);
+        values.put(COL_LNG, lng);
         long result = db.insert(TABLE_ITEMS, null, values);
         return result != -1;
     }
